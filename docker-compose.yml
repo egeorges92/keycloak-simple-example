@@ -2,13 +2,34 @@ version: '3'
 
 services:
   keycloak:
-      image: jboss/keycloak:4.5.0.Final
-      container_name: keycloak
-      environment:
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: password
-        KEYCLOAK_IMPORT: /var/keycloak/import/example-realm.json
-      volumes:
-        - ./import/:/var/keycloak/import/:ro
-      ports:
-        - 8000:8080
+    image: jboss/keycloak:4.5.0.Final
+    container_name: keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      KEYCLOAK_IMPORT: /var/keycloak/import/example-realm.json
+    volumes:
+      - ./keycloak/import/:/var/keycloak/import/:ro
+    ports:
+      - 8000:8080
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+  app-client:
+    image: app-client:latest
+    container_name: app-cli
+    build:
+      context: ./app-cli/
+    ports:
+      - 80:80
+  app-resource:
+    image: app-resource:latest
+    container_name: app-resource
+    extra_hosts:
+      - "keycloak.example.org:${HOST_IP}"
+    build:
+      context: ./app-resource
+    ports:
+      - 8080:8080
+
+

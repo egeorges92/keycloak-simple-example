@@ -9,11 +9,11 @@
     "requiredCredentials": [ "password" ],
     "users" : [
         {
-            "username" : "user",
+            "username" : "jean.de-la-fontaine",
             "enabled": true,
-            "email" : "sample-user@example",
-            "firstName": "Sample",
-            "lastName": "User",
+            "email" : "jean.de-la-fontaine@example",
+            "firstName": "Jean",
+            "lastName": "De La Fontaine",
             "credentials" : [
                 { "type" : "password",
                   "value" : "password" }
@@ -24,11 +24,11 @@
             }
         },
         {
-            "username" : "admin",
+            "username" : "nicolas.fouquet",
             "enabled": true,
-            "email" : "sample-admin@example",
-            "firstName": "Sample",
-            "lastName": "Admin",
+            "email" : "nicolas.fouquet@example",
+            "firstName": "Nicolas",
+            "lastName": "Fouquet",
             "credentials" : [
                 { "type" : "password",
                   "value" : "password" }
@@ -68,12 +68,12 @@
             "clientId": "app-cli",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "http://localhost:4200",
+            "baseUrl": "http://docker",
             "redirectUris": [
-                "http://localhost:4200/*"
+                "http://docker/*"
             ],
             "webOrigins": [
-                "http://localhost:4200"
+                "http://docker"
             ]
         },
         {
