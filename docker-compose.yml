@@ -7,8 +7,8 @@ services:
       environment:
         KEYCLOAK_USER: admin
         KEYCLOAK_PASSWORD: password
-        KEYCLOAK_IMPORT: /tmp/example-realm.json
+        KEYCLOAK_IMPORT: /var/keycloak/import/example-realm.json
       volumes:
-        - ./example-realm.json:/tmp/example-realm.json:ro
+        - ./import/:/var/keycloak/import/:ro
       ports:
         - 8000:8080

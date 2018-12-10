@@ -47,29 +47,37 @@
             },
             {
                 "name": "admin",
-                "description": "Administrator privileges"
+                "description": "Administrator privileges",
+                "composite": true,
+                "composites": {
+                    "realm": [
+                      "user"
+                    ]
+                }
             }
         ]
     },
     "scopeMappings": [
         {
-            "client": "js-console",
+            "client": "app-cli",
             "roles": ["user"]
         }
     ],
     "clients": [
         {
-            "clientId": "js-console",
+            "clientId": "app-cli",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "/js-console",
+            "baseUrl": "http://localhost:4200",
             "redirectUris": [
-                "/js-console/*"
+                "http://localhost:4200/*"
             ],
-            "webOrigins": []
+            "webOrigins": [
+                "http://localhost:4200"
+            ]
         },
         {
-            "clientId": "spring-boot-rest",
+            "clientId": "app-api",
             "enabled": true,
             "clientAuthenticatorType": "client-secret",
             "secret": "my-strong-secret",
@@ -80,7 +88,7 @@
     "clientScopeMappings": {
         "account": [
             {
-                "client": "js-console",
+                "client": "app-cli",
                 "roles": ["view-profile"]
             }
         ]
