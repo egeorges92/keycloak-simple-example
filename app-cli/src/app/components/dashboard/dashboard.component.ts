@@ -96,8 +96,12 @@ export class DashboardComponent implements OnInit {
     this.keycloak.logout();
   }
 
-  displayUserInfo() {
+  displayUserInfo(): string {
     return this.keycloak.getFullName();
+  }
+
+  isUserInRole(role: string): boolean {
+    return this.keycloak.isUserInRole(role);
   }
 
   private isJsonString = (str) => {

@@ -70,6 +70,14 @@ export class KeycloakService {
     return KeycloakService.auth.authz.tokenParsed.name;
   }
 
+  getRoles(): string[] {
+      return KeycloakService.auth.authz.tokenParsed.realm_access.roles;
+  }
+
+  isUserInRole(role: string): boolean {
+    return KeycloakService.auth.authz.tokenParsed.realm_access.roles.indexOf(role) > -1;
+  }
+
   getKeycloakAuth() {
     return KeycloakService.auth.authz;
   }

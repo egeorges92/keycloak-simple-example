@@ -26,30 +26,37 @@
             </div>
           </div>
         </div>
-        <hr class="my-4">
-        <p>Récupération de la donnée du endpoint user sécurisé</p>
-        <div class="lead">
-          <a class="btn btn-primary btn-lg" (click)="getUserData()" role="button">Data User</a>
-          <div class="card" *ngIf="userLoaded">
-            <div class="card-body">
-              <h5 class="card-title">Response</h5>
-              <p class="card-text" *ngIf="!userError">{{ userData }}</p>
-              <p class="card-text" *ngIf="userError">Code retour: {{ userErrorResponse.status }} - message: {{ userErrorResponse.message }}</p>
+        <span *ngIf="keycloakAuth.authenticated">
+          <span *ngIf="isUserInRole('user')">
+            <hr class="my-4">
+            <p>Récupération de la donnée du endpoint user sécurisé</p>
+            <div class="lead">
+              <a class="btn btn-primary btn-lg" (click)="getUserData()" role="button">Data User</a>
+              <div class="card" *ngIf="userLoaded">
+                <div class="card-body">
+                  <h5 class="card-title">Response</h5>
+                  <p class="card-text" *ngIf="!userError">{{ userData }}</p>
+                  <p class="card-text" *ngIf="userError">Code retour: {{ userErrorResponse.status }} - message: {{ userErrorResponse.message }}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <hr class="my-4">
-        <p>Récupération de la donnée du endpoint admin sécurisé</p>
-        <div class="lead">
-          <a class="btn btn-primary btn-lg" (click)="getAdminData()" role="button">Data Admin</a>
-          <div class="card" *ngIf="adminLoaded">
-            <div class="card-body">
-              <h5 class="card-title">Response</h5>
-              <p class="card-text" *ngIf="!adminError">{{ adminData }}</p>
-              <p class="card-text" *ngIf="adminError">Code retour: {{ adminErrorResponse.status }} - message: {{ adminErrorResponse.message }}</p>
+          </span>
+          <span *ngIf="isUserInRole('admin')">
+            <hr class="my-4">
+            <p>Récupération de la donnée du endpoint admin sécurisé</p>
+            <div class="lead">
+              <a class="btn btn-primary btn-lg" (click)="getAdminData()" role="button">Data Admin</a>
+              <div class="card" *ngIf="adminLoaded">
+                <div class="card-body">
+                  <h5 class="card-title">Response</h5>
+                  <p class="card-text" *ngIf="!adminError">{{ adminData }}</p>
+                  <p class="card-text" *ngIf="adminError">Code retour: {{ adminErrorResponse.status }} - message: {{ adminErrorResponse.message }}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </span>
+        </span>
+      </div>
     </div>
   </div>
 </div>

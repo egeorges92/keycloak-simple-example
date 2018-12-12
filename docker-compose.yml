@@ -15,20 +15,20 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
-  app-client:
-    image: app-client:latest
+  app-cli:
+    image: app-cli:latest
     container_name: app-cli
     build:
       context: ./app-cli/
     ports:
       - 80:80
-  app-resource:
-    image: app-resource:latest
-    container_name: app-resource
+  app-api:
+    image: app-api:latest
+    container_name: app-api
     extra_hosts:
       - "keycloak.example.org:${HOST_IP}"
     build:
-      context: ./app-resource
+      context: ./app-api
     ports:
       - 8080:8080
 
