@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://docker:8080',
+  apiUrl: 'http://api.example.org',
   keycloak: {
-    url: 'http://keycloak.example.org:8000/auth',
+    url: 'http://identity.example.org/auth',
     realm: 'example',
     clientId: 'app-cli',
   }

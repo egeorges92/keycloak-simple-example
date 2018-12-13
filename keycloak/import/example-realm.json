@@ -11,7 +11,7 @@
         {
             "username" : "jean.de-la-fontaine",
             "enabled": true,
-            "email" : "jean.de-la-fontaine@example",
+            "email" : "jean.de-la-fontaine@example.org",
             "firstName": "Jean",
             "lastName": "De La Fontaine",
             "credentials" : [
@@ -26,7 +26,7 @@
         {
             "username" : "nicolas.fouquet",
             "enabled": true,
-            "email" : "nicolas.fouquet@example",
+            "email" : "nicolas.fouquet@example.org",
             "firstName": "Nicolas",
             "lastName": "Fouquet",
             "credentials" : [
@@ -68,12 +68,14 @@
             "clientId": "app-cli",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "http://docker",
+            "baseUrl": "http://example.org",
             "redirectUris": [
-                "http://docker/*"
+                "http://example.org/*",
+                "http://www.example.org/*"
             ],
             "webOrigins": [
-                "http://docker"
+                "http://example.org",
+                "http://www.example.org"
             ]
         },
         {
