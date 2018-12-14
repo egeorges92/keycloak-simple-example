@@ -2,15 +2,37 @@ version: '3'
 
 services:
 
-  keycloak:
-    image: jboss/keycloak:4.5.0.Final
+  identity-server:
+    image: identity-server:latest
     container_name: identity-server
+    build:
+      context: ./identity-server/
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
       KEYCLOAK_IMPORT: /var/keycloak/import/example-realm.json
+      DB_VENDOR: POSTGRES
+      DB_ADDR: identity-db
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
     volumes:
-      - ./keycloak/import/:/var/keycloak/import/:ro
+      - ./identity-server/import/:/var/keycloak/import/:ro
+
+  identity-db:
+    image: identity-db:latest
+    container_name: identity-db
+    build:
+      context: ./identity-db/
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    volumes:
+      - identity-db_data:/var/lib/postgresql/data
 
   reverse-proxy:
     image: reverse-proxy:latest
@@ -37,4 +59,6 @@ services:
     build:
       context: ./app-api
 
-
+volumes:
+  identity-db_data:
+      driver: local
