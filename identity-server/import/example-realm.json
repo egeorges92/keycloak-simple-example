@@ -68,14 +68,12 @@
             "clientId": "app-cli",
             "enabled": true,
             "publicClient": true,
-            "baseUrl": "http://example.org",
+            "baseUrl": "https://www.example.org",
             "redirectUris": [
-                "http://example.org/*",
-                "http://www.example.org/*"
+                "https://www.example.org/*"
             ],
             "webOrigins": [
-                "http://example.org",
-                "http://www.example.org"
+                "https://www.example.org"
             ]
         },
         {

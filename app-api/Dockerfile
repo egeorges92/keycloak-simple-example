@@ -6,5 +6,12 @@ RUN mvn clean package -f /usr/src/app/pom.xml -B -Dorg.slf4j.simpleLogger.log.or
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 COPY --from=build /usr/src/app/target/app-resource-1.0.0-SNAPSHOT.jar /usr/app/app-resource-1.0.0-SNAPSHOT.jar
+
+# install ssl certificat
+COPY ssl/example.org.crt /root/example.org.crt
+RUN ${JAVA_HOME}/jre/bin/keytool -import -trustcacerts -file /root/example.org.crt \
+    -storepass changeit -noprompt \
+    -keystore ${JAVA_HOME}/jre/lib/security/cacerts -alias "example.org"
+
 EXPOSE 8080
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/usr/app/app-resource-1.0.0-SNAPSHOT.jar"]

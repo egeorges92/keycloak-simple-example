@@ -19,8 +19,11 @@ services:
       DB_PASSWORD: password
       # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
       #JDBC_PARAMS: "ssl=true"
+      PROXY_ADDRESS_FORWARDING: 'true'
     volumes:
       - ./identity-server/import/:/var/keycloak/import/:ro
+    ports:
+      - 8080:8080
 
   identity-db:
     image: identity-db:latest
@@ -40,10 +43,9 @@ services:
     build:
       context: ./reverse-proxy/
     restart: on-failure
-    volumes:
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 80:80
+      - 443:443
 
   app-cli:
     image: app-cli:latest
