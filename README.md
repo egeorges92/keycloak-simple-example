@@ -1,6 +1,9 @@
 # keycloak-simple-example
 
-Inspired by the article and the code from : https://blog.ineat-conseil.fr/2017/11/securisez-vos-apis-spring-avec-keycloak-1-installation-de-keycloak/
+Inspired by the article and the code from :
+
+- https://blog.ineat-conseil.fr/2017/11/securisez-vos-apis-spring-avec-keycloak-1-installation-de-keycloak/
+- https://www.callicoder.com/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/
 
 Update .env file with the docker host IP:
 HOST_IP=192.168.99.100

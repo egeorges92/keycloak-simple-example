@@ -61,6 +61,19 @@ services:
     build:
       context: ./app-api
 
+  api-db:
+    image: api-db:latest
+    container_name: api-db
+    build:
+      context: ./api-db/
+    environment:
+      POSTGRES_DB: api
+      POSTGRES_USER: api
+      POSTGRES_PASSWORD: password
+    volumes:
+      - api-db_data:/var/lib/postgresql/data
 volumes:
   identity-db_data:
-      driver: local
+    driver: local
+  api-db_data:
+    driver: local
