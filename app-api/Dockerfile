@@ -14,4 +14,6 @@ RUN ${JAVA_HOME}/jre/bin/keytool -import -trustcacerts -file /root/example.org.c
     -keystore ${JAVA_HOME}/jre/lib/security/cacerts -alias "example.org"
 
 EXPOSE 8080
+HEALTHCHECK CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=prod","-jar","/usr/app/app-resource-1.0.0-SNAPSHOT.jar"]

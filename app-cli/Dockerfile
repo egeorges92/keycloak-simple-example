@@ -12,9 +12,11 @@ RUN cd /usr/src/app;\
 
 #==================== Setting up stage ==================== 
 # Create image based on the official nginx - Alpine image
-FROM nginx:1.13.7-alpine
+FROM nginx:1.15.7-alpine
 
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 #COPY ./nginx-to-do-app.conf /etc/nginx/conf.d/default.conf
+
+HEALTHCHECK CMD wget --quiet --spider --tries=1 http://localhost || exit 1
 
